@@ -23,3 +23,33 @@ class DataBaseWork
 	}
 
 }
+
+abstract class Article 
+{
+	public $title;
+	public $text;
+}
+
+class News extends Article 
+{
+	public $db;
+
+	public function __construct(){
+
+		 $this->db = new DataBaseWork('localhost','root','','img_info');
+	}
+
+	public function getNews()
+	{
+		return $this->db->selectData("SELECT title, article FROM news");
+	}
+
+	public function setNews($title, $article)
+	{
+		return $this->db-> updateInsertData("INSERT INTO 'news'
+									('title', 'article') 
+									VALUES 
+									('".$title."', '".$article."')");
+
+	}
+}

@@ -2,9 +2,10 @@
 
 require __DIR__.' /Model_News.php';
 
-$news = new DataBaseWork('localhost','root','','img_info');
+$newsListGet = new News();
 
-$newsList = $news -> selectData("SELECT title, article FROM news");
+$newsList = $newsListGet -> getNews();
+//var_dump($newsList);
 
 include (__DIR__. '/View_News.php');
 
