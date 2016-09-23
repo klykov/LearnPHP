@@ -1,13 +1,19 @@
 <?php
 
-require __DIR__.' /Model_News.php';
+require __DIR__.' /models/Model_News.php';
 
-$newsListGet = new News();
+$contr = (isset($_GET['contr'])) ? $_GET['contr'] : 'News';
+$act = (isset($_GET['act'])) ? $_GET['act'] : 'All';
 
-$newsList = $newsListGet -> getNews();
-//var_dump($newsList);
+$controllerClassName =  $contr .'controller';
 
-include (__DIR__. '/View_News.php');
+require __DIR__ .'/controllers/'.$controllerClassName.'.php';
+
+$controller = new $controllerClassName;
+$method = 'action'. $act;
+
+$controller -> $method();
+
 
 
 
